@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>To-Do List</title>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+</head>
+<body>
+    <div class="container">
+        <h1>To-Do List</h1>
+        <div class="center">
+            <a href="/todos/add"><button>Add New To-Do</button></a>
+        </div>
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Completed</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="todo : ${todos}">
+                    <td th:text="${todo.id}"></td>
+                    <td th:text="${todo.title}"></td>
+                    <td>
+                        <input type="checkbox" th:checked="${todo.completed}" disabled/>
+                    </td>
+                    <td>
+                        <a th:href="@{/todos/edit/{id}(id=${todo.id})}">Edit</a> |
+                        <a th:href="@{/todos/delete/{id}(id=${todo.id})}">Delete</a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
